@@ -9,7 +9,7 @@ const AppStackNav = () => {
     useEffect(() => {
         const loadingTimer = setTimeout(() => {
             setIsLoading(false);
-        }, 2000);
+        }, 4000);
 
         return () => clearTimeout(loadingTimer);
     }, []);
