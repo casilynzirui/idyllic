@@ -14,7 +14,6 @@ const allMessages = [
   "When it comes to luck, you make your own.",
   "It takes courage to grow up and become who you really are.",
   "ll our dreams can come true, if we have the courage to pursue them.",
-  "Don't sit down and wait for the opportunities to come. Get up and make them.",
   
 
 ];
