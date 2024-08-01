@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { TouchableOpacity, View, Text, StyleSheet, Image } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import MoreButtonOverlay from '../components/MoreButtonOverlay';
+import colors from '../components/Colors';
 
 const CustomTabBar: React.FC<BottomTabBarProps> = ({ state, descriptors, navigation }) => {
   const [showOptions, setShowOptions] = useState(false);
@@ -89,25 +90,26 @@ const CustomTabBar: React.FC<BottomTabBarProps> = ({ state, descriptors, navigat
 const styles = StyleSheet.create({
   tabContainer: {
     flexDirection: 'row',
-    height: 56, // Adjust height as needed
-    backgroundColor: '#FAFAFA', // Tab bar background color
+    height: 55, // Adjust height as needed
+    backgroundColor: colors.background, // Tab bar background color
   },
   tabItem: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    bottom: 5
   },
   tabIcon: {
-    width: 25, // Adjust icon size as needed
-    height: 25,
+    width: 30, // Adjust icon size as needed
+    height: 30,
     resizeMode: 'contain', // Ensure the icon fits within the specified size
   },
   moreButton: {
-    width: 25,
-    height: 25,
+    width: 30,
+    height: 30,
     position: 'absolute',
-    top: 15.5,
-    right: 25.5,
+    top: 7.5,
+    right: 24.5,
   },
 
 });
