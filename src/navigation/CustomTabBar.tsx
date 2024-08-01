@@ -77,10 +77,10 @@ const CustomTabBar: React.FC<BottomTabBarProps> = ({ state, descriptors, navigat
         <Image
             source={bottomTabIconPaths['More'].active}
             style={styles.tabIcon}
-          />
-        </TouchableOpacity>
+        />
+      </TouchableOpacity>
 
-        <MoreButtonOverlay visible={showOptions} onClose={() => setShowOptions(false)} onSelect={handleOptionSelect} />
+      <MoreButtonOverlay visible={showOptions} onClose={() => setShowOptions(false)} onSelect={handleOptionSelect} />
 
       
     </View>

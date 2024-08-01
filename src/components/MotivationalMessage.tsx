@@ -24,7 +24,7 @@ const getRandomMessage = () => {
 };
 
 const MotivationalMessages: React.FC = () => {
-    /*
+    /* 
     const [currentMessage, setCurrentMessage] = useState<string>(allMessages[0]);
 
     

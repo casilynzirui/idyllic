@@ -3,8 +3,8 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { BottomTabParamList } from '../navigation/NavigationTypes';
-import { MoreStackParamList } from '../navigation/NavigationTypes';
+import { BottomTabParamList, MoreStackParamList } from '../navigation/NavigationTypes';
+import colors from './Colors';
 
 type CombinedNavigationProp = BottomTabNavigationProp<BottomTabParamList> & NativeStackNavigationProp<MoreStackParamList>;
 
@@ -38,9 +38,9 @@ const MoreButtonOverlay: React.FC<MoreButtonOverlayProps> = ({ visible, onClose,
   const styles = StyleSheet.create({
     overlay: {
       position: 'absolute',
-      bottom: 50,
+      bottom: 55,
       right: 0,
-      backgroundColor: 'rgba(0, 0, 0, 0.8)',
+      backgroundColor: colors.white,
       borderRadius: 10,
       padding: 10,
       width: 150,
@@ -52,8 +52,8 @@ const MoreButtonOverlay: React.FC<MoreButtonOverlayProps> = ({ visible, onClose,
       paddingVertical: 10,
     },
     optionText: {
-      color: '#fff',
-      fontSize: 16,
+      color: colors.primary,
+      fontSize: 14,
     },
   });
   
