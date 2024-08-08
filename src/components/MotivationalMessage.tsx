@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import colors from './Colors';
+import colors from './ColorTemplate';
 
 const allMessages = [
   "Believe in yourself!",
@@ -13,7 +13,7 @@ const allMessages = [
   "You are capable of amazing things!",
   "When it comes to luck, you make your own.",
   "It takes courage to grow up and become who you really are.",
-  "ll our dreams can come true, if we have the courage to pursue them.",
+  "Our dreams can come true, if we have the courage to pursue them.",
   
 
 ];

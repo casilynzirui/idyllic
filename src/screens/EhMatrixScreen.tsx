@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
-import colors from '../components/Colors';
+import colors from '../components/ColorTemplate';
 import MotivationalMessages from '../components/MotivationalMessage';
 
 const EhMatrixScreen = () => {
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imileyIcon: {
-    width: 31,
+    width: 33,
     height: 10.85
   },
   matrixContainer: {

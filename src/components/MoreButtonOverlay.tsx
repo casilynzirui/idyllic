@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { BottomTabParamList, MoreStackParamList } from '../navigation/NavigationTypes';
-import colors from './Colors';
+import colors from './ColorTemplate';
 
 type CombinedNavigationProp = BottomTabNavigationProp<BottomTabParamList> & NativeStackNavigationProp<MoreStackParamList>;
 
@@ -16,22 +16,27 @@ interface MoreButtonOverlayProps {
 }
 
 const MoreButtonOverlay: React.FC<MoreButtonOverlayProps> = ({ visible, onClose, onSelect }) => {
-    const navigation = useNavigation<CombinedNavigationProp>();
+  const navigation = useNavigation<CombinedNavigationProp>();
 
-    if (!visible) return null;
+  if (!visible) return null;
 
-    return (
-        <View style={styles.overlay}>
-            <View style={styles.menu}>
-                <TouchableOpacity onPress={() => { onSelect('Profile'); navigation.navigate('More'); }} style={styles.option}>
-                    <Text style={styles.optionText}>Profile</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => { onSelect('Settings'); navigation.navigate('More'); }} style={styles.option}>
-                    <Text style={styles.optionText}>Settings</Text>
-                </TouchableOpacity>
-            </View>
-        </View>
-    );
+  const handleNavigate = (screen: 'Profile' | 'Settings') => {
+    onSelect(screen);
+    navigation.navigate('More', { screen }); 
+  };
+
+  return (
+    <View style={styles.overlay}>
+      <View style={styles.menu}>
+        <TouchableOpacity onPress={() => handleNavigate('Profile')} style={styles.option}>
+          <Text style={styles.optionText}>Profile</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleNavigate('Settings')} style={styles.option}>
+          <Text style={styles.optionText}>Settings</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
 };
 
   

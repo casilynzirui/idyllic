@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TouchableOpacity, View, Text, StyleSheet, Image } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import MoreButtonOverlay from '../components/MoreButtonOverlay';
-import colors from '../components/Colors';
+import colors from '../components/ColorTemplate';
 
 const CustomTabBar: React.FC<BottomTabBarProps> = ({ state, descriptors, navigation }) => {
   const [showOptions, setShowOptions] = useState(false);

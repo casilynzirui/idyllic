@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { View, Animated, StyleSheet } from 'react-native';
-import colors from './Colors';
+import colors from './ColorTemplate';
 
 interface LoadingBarProps {
     loadingPercentage: number;
@@ -13,7 +13,7 @@ const LoadingBar: React.FC<LoadingBarProps> = ({ loadingPercentage }) => {
     Animated.timing(animation, {
       toValue: loadingPercentage,
       duration: 100,
-      useNativeDriver: false, // set to false because we are animating width
+      useNativeDriver: false,
     }).start();
   }, [loadingPercentage]);
 

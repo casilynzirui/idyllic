@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import LoadingBar from '../components/LoadingBar';
-import colors from '../components/Colors';
+import colors from '../components/ColorTemplate';
 
 const LoadingScreen: React.FC = () => {
   const [loadingProgress, setLoadingProgress] = useState(0);
@@ -38,11 +38,12 @@ const LoadingScreen: React.FC = () => {
     setLoadingStage('appName');
     setTimeout(() => {
       setLoadingStage('loading');
-    }, 1000); 
+    }, 1000);
   };
 
   return (
     <View style={styles.container}>
+
       {loadingStage === 'appIcon' && (
         <TouchableOpacity onPress={handleIconPress}>
           <Image source={require('../assets/imiley_loading.png')} style={styles.appIcon} />
@@ -50,6 +51,7 @@ const LoadingScreen: React.FC = () => {
       )}
       {loadingStage === 'appName' && <Text style={styles.appName}>Idyllic</Text>}
       {loadingStage === 'loading' && <LoadingBar loadingPercentage={loadingProgress} />}
+      
     </View>
   );
 };
@@ -69,6 +71,12 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: colors.primary
   },
+  hiddenView: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#fff', // Same as container background
+},
 });
 
 export default LoadingScreen;

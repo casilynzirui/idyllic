@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'; 
-import colors from '../components/Colors';
+import colors from '../components/ColorTemplate';
 
 const focusTime = 0.2 * 60 * 1000;
 const breakTime = 5 * 60 * 1000;

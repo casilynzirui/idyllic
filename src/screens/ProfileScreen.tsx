@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import colors from '../components/Colors';
+import colors from '../components/ColorTemplate';
+
+
 
 const ProfileScreen = () => {
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Profile</Text>
