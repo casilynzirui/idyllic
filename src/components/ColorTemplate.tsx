@@ -4,6 +4,7 @@ const colors = {
     alternate: '#6E6F67',
     background: '#FAFAFA',
     textPrimary: '#6E6F67',
+    textSecondary: '#A2AB9B',
     textAlternate: '#E5DCCC',
     white: '#FFFFFF',
     black: '#000000',

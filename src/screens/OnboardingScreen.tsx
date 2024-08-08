@@ -52,20 +52,53 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
         )}
         {onboardingProgress === 2 && (
             <View style={styles.onboardingContainer}>
-                <Text style={styles.input}>Let's get started!</Text>
-                <Button title="Next" onPress={handleNext} />
+            <View style={styles.speechBubble}>
+                <Text style={styles.speechText}> I'm glad to see you{'\n'} here.</Text>
+                <View style={styles.pointyAngle} />
+            </View>
+            <View style={styles.imileyContainer}>
+                <Image source={require('../assets/imiley_loading.png')} style={styles.imileyIcon} />
+            </View>
+            <TouchableHighlight
+                style={styles.nextButton}
+                onPress={handleNext}
+                onPressIn={() => setIsPressed(true)} // Set pressed state when button is pressed
+                onPressOut={() => setIsPressed(false)} // Reset pressed state when button is released
+                underlayColor='#6E6F67' // Change the underlay color on press
+            >
+                <Text style={isPressed ? styles.buttonTextAlternate : styles.buttonText}>Next</Text>
+            </TouchableHighlight>
             </View>
         )}
         {onboardingProgress === 3 && (
             <View style={styles.onboardingContainer}>
-                <Text style={styles.input}>What’s your name?</Text>
+                <View style={styles.speechBubble2}>
+                    <Text style={styles.speechText}> What is your name?</Text>
+                    <View style={styles.pointyAngle2} />
+                </View>
+                <View style={styles.imileyContainer2}>
+                    <Image source={require('../assets/imiley_loading.png')} style={styles.imileyIcon} />
+                </View>
+                <View style={styles.speechBubble3}>
+                <Text style={styles.speechText}> My name is</Text>
                 <TextInput
-                    style={styles.input}
-                    placeholder="Enter your name"
+                    style={styles.speechText2}
+                    placeholder=" _________________"
+                    placeholderTextColor={colors.textSecondary}
                     value={idyllicUsername}
                     onChangeText={setIdyllicUsername}
                 />
-                <Button title="Continue" onPress={handleNext} />
+                    <View style={styles.pointyAngle3} />
+                </View>
+                <TouchableHighlight
+                    style={styles.continueButton}
+                    onPress={handleNext}
+                    onPressIn={() => setIsPressed(true)} // Set pressed state when button is pressed
+                    onPressOut={() => setIsPressed(false)} // Reset pressed state when button is released
+                    underlayColor={colors.alternate} // Change the underlay color on press
+                >
+                    <Text style={isPressed ? styles.buttonTextAlternate : styles.buttonText}>Continue</Text>
+                </TouchableHighlight>
             </View>
         )}
         </View>
@@ -117,6 +150,58 @@ const styles = StyleSheet.create({
         bottom: -35,
         right: -150
     },
+    speechBubble2: {
+        width: 200,
+        height: 100,
+        backgroundColor: colors.ascent,
+        borderRadius: 20,
+        justifyContent: 'center',
+        padding: 10,
+        top: -60,
+        right: 25
+    },
+    pointyAngle2: {
+        width: 0,
+        height: 0,
+        borderLeftWidth: 10,
+        borderRightWidth: 20,
+        borderBottomWidth: 20,
+        borderLeftColor: 'transparent',
+        borderRightColor: 'transparent',
+        borderBottomColor: colors.ascent,
+        transform: [{ rotate: '40deg' }],
+        bottom: -35,
+        right: -150
+    },
+    speechBubble3: {
+        width: 200,
+        height: 120,
+        backgroundColor: colors.ascent,
+        borderRadius: 20,
+        justifyContent: 'center',
+        padding: 10,
+        right: -25
+    },
+    speechText2: {
+        fontSize: 18,
+        color: colors.textSecondary,
+        lineHeight: 25,
+        bottom: -15,
+        right: -5,
+    },
+    pointyAngle3: {
+        width: 0,
+        height: 0,
+        borderLeftWidth: 10,
+        borderRightWidth: 20,
+        borderBottomWidth: 20,
+        borderLeftColor: 'transparent',
+        borderRightColor: 'transparent',
+        borderBottomColor: colors.ascent,
+        transform: [{ rotate: '85deg' }],
+        bottom: -40,
+        left: 10
+    },
     imileyContainer: {
         width: 60,
         height: 60,
@@ -124,8 +209,18 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         justifyContent: 'center',
         alignItems: 'center',
-        top: -55,
-        right: -80
+        top: -60,
+        right: -90
+    },
+    imileyContainer2: {
+        width: 60,
+        height: 60,
+        backgroundColor: colors.ascent,
+        borderRadius: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        top: -45,
+        right: -95
     },
     imileyIcon: {
         width: 34,
@@ -147,6 +242,15 @@ const styles = StyleSheet.create({
     buttonTextAlternate: {
         fontSize: 18,
         color: colors.textAlternate,
+    },
+    continueButton: {
+        width: 250,
+        height: 50,
+        backgroundColor: colors.ascent,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        bottom: -60
     },
 });
 
