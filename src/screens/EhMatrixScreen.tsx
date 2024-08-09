@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imileyIcon: {
-    width: 33,
-    height: 10.85
+    width: 34,
+    height: 11
   },
   matrixContainer: {
     width: 338,
