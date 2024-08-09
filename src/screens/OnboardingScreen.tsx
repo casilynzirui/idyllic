@@ -11,7 +11,7 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
     const handleNext = async () => {
         setIsPressed(!isPressed);
 
-        if (onboardingProgress === 3) {
+        if (onboardingProgress === 5) {
             if (idyllicUsername.trim() === '') {
                 Alert.alert('Error', 'Name cannot be empty.');
                 return;
@@ -27,6 +27,12 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
             setOnboardingProgress(onboardingProgress + 1);
         }
     };
+
+    const handleBack = () => {
+        setIsPressed(!isPressed);
+        setOnboardingProgress(3);
+        setIdyllicUsername('');
+    }
 
     return (
         <View style={styles.container}>
@@ -98,6 +104,59 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
                     underlayColor={colors.alternate} // Change the underlay color on press
                 >
                     <Text style={isPressed ? styles.buttonTextAlternate : styles.buttonText}>Continue</Text>
+                </TouchableHighlight>
+            </View>
+        )}
+        {onboardingProgress === 4 && (
+            <View style={styles.onboardingContainer}>
+                <View style={styles.speechBubble}>
+                    <Text style={styles.speechText}> Is your name{'\n'}                    
+                        <Text style={styles.speechText3}> {idyllicUsername}</Text> ?
+                    </Text>
+                    <View style={styles.pointyAngle} />
+                </View>
+                <View style={styles.imileyContainer}>
+                    <Image source={require('../assets/imiley_loading.png')} style={styles.imileyIcon} />
+                </View>
+                <View style={styles.buttonContainer}>
+                <TouchableHighlight
+                    style={styles.yesnoButton}
+                    onPress={handleNext}
+                    onPressIn={() => setIsPressed(true)} // Set pressed state when button is pressed
+                    onPressOut={() => setIsPressed(false)} // Reset pressed state when button is released
+                    underlayColor='#6E6F67' // Change the underlay color on press
+                >
+                    <Text style={isPressed ? styles.buttonTextAlternate : styles.buttonText}>Yes</Text>
+                </TouchableHighlight>
+                <TouchableHighlight
+                    style={styles.yesnoButton}
+                    onPress={handleBack}
+                    onPressIn={() => setIsPressed(true)} // Set pressed state when button is pressed
+                    onPressOut={() => setIsPressed(false)} // Reset pressed state when button is released
+                    underlayColor='#6E6F67' // Change the underlay color on press
+                >
+                    <Text style={isPressed ? styles.buttonTextAlternate : styles.buttonText}>No</Text>
+                </TouchableHighlight>
+                </View>
+            </View>
+        )}
+        {onboardingProgress === 5 && (
+            <View style={styles.onboardingContainer}>
+                <View style={styles.speechBubble}>
+                    <Text style={styles.speechText}> Great!{'\n'} Let's get started!</Text>
+                    <View style={styles.pointyAngle} />
+                </View>
+                <View style={styles.imileyContainer}>
+                    <Image source={require('../assets/imiley_loading.png')} style={styles.imileyIcon} />
+                </View>
+                <TouchableHighlight
+                    style={styles.nextButton}
+                    onPress={handleNext}
+                    onPressIn={() => setIsPressed(true)} // Set pressed state when button is pressed
+                    onPressOut={() => setIsPressed(false)} // Reset pressed state when button is released
+                    underlayColor='#6E6F67' // Change the underlay color on press
+                >
+                    <Text style={isPressed ? styles.buttonTextAlternate : styles.buttonText}>Start</Text>
                 </TouchableHighlight>
             </View>
         )}
@@ -222,6 +281,13 @@ const styles = StyleSheet.create({
         top: -45,
         right: -95
     },
+    speechText3: {
+        fontSize: 18,
+        color: colors.textSecondary,
+        lineHeight: 25,
+        bottom: 10,
+        fontWeight: 'bold'
+    },
     imileyIcon: {
         width: 34,
         height: 11
@@ -251,6 +317,20 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         bottom: -60
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    yesnoButton: {
+        width: 120,
+        height: 50,
+        backgroundColor: colors.ascent,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        bottom: -80,
+        marginHorizontal: 10
     },
 });
 
