@@ -18,7 +18,7 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
             }
             try {
                 await AsyncStorage.setItem('IdyllicUsername', idyllicUsername);
-                onComplete(); // Complete onboarding
+                onComplete(); // Complete onboarding process
             } catch (error) {
                 Alert.alert('Error', 'Something went wrong.');
                 console.error(error);
@@ -27,6 +27,16 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
             setOnboardingProgress(onboardingProgress + 1);
         }
     };
+
+    const handleContinue = () => {
+        setIsPressed(!isPressed);
+        if (idyllicUsername.trim() === '') {
+            Alert.alert('Error', 'Name cannot be empty.');
+            return;
+        } else {
+            setOnboardingProgress(4);
+        }
+    }
 
     const handleBack = () => {
         setIsPressed(!isPressed);
@@ -98,7 +108,7 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
                 </View>
                 <TouchableHighlight
                     style={styles.continueButton}
-                    onPress={handleNext}
+                    onPress={handleContinue}
                     onPressIn={() => setIsPressed(true)} // Set pressed state when button is pressed
                     onPressOut={() => setIsPressed(false)} // Reset pressed state when button is released
                     underlayColor={colors.alternate} // Change the underlay color on press
