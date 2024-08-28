@@ -43,7 +43,7 @@ const GreetingMessage: React.FC = () => {
             if (displayUsername !== null) {
                 if (!initialLogin) {
                     // Initial login to app
-                    setGreetingMessage(`Hello! ${displayUsername}`);
+                    setGreetingMessage(`Hello, ${displayUsername}!`);
                     setInitialLogin(true); // Mark app as visited
                 } else {
                     // Subsequent visit to dashboard
