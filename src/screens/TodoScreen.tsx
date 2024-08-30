@@ -7,16 +7,27 @@ import MotivationalMessages from '../components/MotivationalMessage';
 const TodoScreen = () => {
   const [todoText, setTodoText] = useState<string>('');
   const [todoItems, setTodoItems] = useState<{ id: string; text: string }[]>([]);
+  const [editItem, setEditItem] = useState<string | null>(null);
+  const [deletedItems, setDeletedItems] = useState<{ id: string; text: string }[]>([]);
+  const [showDeletedItems, setShowDeletedItems] = useState(false);
+
 
   // Load and display todo items from storage when app starts
   useEffect(() => {
     const displayTodoItems = async () => {
       try {
         const saveTodoItems = await AsyncStorage.getItem('todoItems');
+        const savedDeletedItems = await AsyncStorage.getItem('deletedItems');
+
         if (saveTodoItems) {
           setTodoItems(JSON.parse(saveTodoItems));
 
         }
+
+        if (savedDeletedItems) {
+          setDeletedItems(JSON.parse(savedDeletedItems));
+        }
+
       } catch (error) {
         console.error('Failed,', error);
       }
@@ -30,13 +41,14 @@ const TodoScreen = () => {
     const saveTodoItems = async () => {
       try {
         await AsyncStorage.setItem('todoItems', JSON.stringify(todoItems));
+        await AsyncStorage.setItem('deletedItems', JSON.stringify(deletedItems));
       } catch (error) {
         console.error('Failed to save todos:', error);
       }
     };
 
     saveTodoItems();
-  }, [todoItems]);
+  }, [todoItems, deletedItems]);
 
   const addTodoItem = () => {
     if (todoText.trim().length > 0) {
@@ -50,7 +62,27 @@ const TodoScreen = () => {
   };
 
   const removeTodoItem = (id: string) => {
-    setTodoItems((prevTodoItems) => prevTodoItems.filter((todo) => todo.id !== id));
+    const todoItemDelete = todoItems.find(todo => todo.id === id);
+    if (todoItemDelete) {
+      setDeletedItems([...deletedItems, todoItemDelete]); // Move to todo item to deleted history
+      setTodoItems((prevTodoItems) => prevTodoItems.filter((todo) => todo.id !== id));
+    }
+  };
+
+  const toggleView = () => {
+    setShowDeletedItems((prevShowDeletedItems) => !prevShowDeletedItems);
+  };
+
+  const handlePress = (id: string) => {
+    setEditItem(id); // To set the id of the item to be edited
+  };
+
+  const updateTodoItem = (id: string, newTodoText: string) => {
+    setTodoItems((prevTodoItems) =>
+      prevTodoItems.map((todo) =>
+        todo.id === id ? { ...todo, text: newTodoText } : todo
+      )
+    );
   };
   
 
@@ -74,20 +106,42 @@ const TodoScreen = () => {
         </View>
 
         <View style={styles.flatList}>
+          
           <FlatList
-            data={todoItems}
+            data={showDeletedItems ? deletedItems : todoItems}
             keyExtractor={(item) => item.id}
-            renderItem={({ item }) => (
-              <View style={styles.todoList}>
-                <TouchableOpacity style={styles.checkBox} onPress={() => removeTodoItem(item.id)} />
-                <Text style={styles.todoText}>{item.text}</Text>
-
-              </View>
-            )}
+            renderItem={({ item }) => (        
+              showDeletedItems ? (
+                // For deleted items
+                <View style={styles.todoList}>
+                  <View style={styles.checkedBox} />
+                  <Text style={[styles.todoText, styles.strikeThrough]}>{item.text}</Text>
+                </View>
+              ) : ( 
+                <TouchableOpacity onPress={() => handlePress(item.id)}>
+                  <View style={styles.todoList}>
+                    <TouchableOpacity style={styles.checkBox} onPress={() => removeTodoItem(item.id)} />
+                      {editItem === item.id ? (
+                      <View style={styles.fixedList}>
+                      <TextInput
+                        style={styles.todoText}
+                        value={item.text}
+                        onChangeText={(text) => updateTodoItem(item.id, text)}
+                        autoFocus={true}
+                        onBlur={() => setEditItem(null)}
+                      />
+                      </View>
+                    ) : (
+                      <Text style={styles.todoText}>{item.text}</Text>
+                    )} 
+                  </View>
+                </TouchableOpacity>
+              )
+            )} 
           />
         </View>
 
-        <TouchableOpacity style={styles.moreButton} onPress={addTodoItem}>
+        <TouchableOpacity style={styles.moreButton} onPress={toggleView}>
             <Image source={require('../assets/completedtask.png')} style={styles.moreIcon} />
         </TouchableOpacity>
         
@@ -167,6 +221,12 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: colors.primary,
   },
+  checkedBox: {
+    width: 18,
+    height: 18,
+    borderRadius: 5,
+    backgroundColor: colors.primary,
+  },
   textInput: {
     borderWidth: 2,
     borderRadius: 5,
@@ -201,6 +261,13 @@ const styles = StyleSheet.create({
   moreIcon: {
     width: 30,
     height: 30
+  },
+  fixedList: {
+    height: 50,
+  },
+  strikeThrough: {
+    textDecorationLine: 'line-through',
+    textDecorationStyle: 'solid',
   },
 
 });

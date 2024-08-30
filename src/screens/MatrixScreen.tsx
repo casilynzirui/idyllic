@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import colors from '../components/ColorTemplate';
 import MotivationalMessages from '../components/MotivationalMessage';
 
-const EhMatrixScreen = () => {
+const MatrixScreen = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -17,12 +17,12 @@ const EhMatrixScreen = () => {
             
       <View style={styles.matrixContainer}>
       <View style={styles.matrixRow}>
-        <View style={styles.matrixSquare} />
-        <View style={styles.matrixSquare} />
+        <TouchableOpacity style={styles.matrixSquare} onPress={() => navigation.navigate('DoIt')}/>
+        <TouchableOpacity style={styles.matrixSquare} />
       </View>
       <View style={styles.matrixRow}>
-        <View style={styles.matrixSquare} />
-        <View style={styles.matrixSquare} />
+        <TouchableOpacity style={styles.matrixSquare} />
+        <TouchableOpacity style={styles.matrixSquare} />
       </View>
 
       </View>
@@ -85,4 +85,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EhMatrixScreen;
+export default MatrixScreen;
