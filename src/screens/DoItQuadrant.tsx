@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     },
     headerContainer: {
         flexDirection: 'row', 
-        bottom: 15,
+        bottom: 5,
     },
     motivationalContainer:{
         width: 263,
@@ -64,10 +64,10 @@ const styles = StyleSheet.create({
     },
     quadrantContainer: {
         width: 338,
-        height: 570,
+        height: 580,
         backgroundColor: colors.white,
         borderRadius: 10,
-        top: 10,
+        top: 15,
         padding: 20,
     },
     quadrantHeader: {

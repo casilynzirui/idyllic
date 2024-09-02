@@ -6,6 +6,7 @@ import PomoScreen from '../screens/PomoScreen';
 import CustomTabBar from './CustomTabBar';
 import MoreStackNav from './MoreStackNav';
 import MatrixStackNav from './MatrixStackNav';
+import DashboardStackNav from './DashboardStackNav';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,7 +19,7 @@ const BottomTabBar: React.FC = () => {
         >
             <Tab.Screen name="To Do List" component={TodoScreen} options={{ tabBarLabel: () => null, headerShown: false }} />
             <Tab.Screen name="Eisenhower Matrix" component={MatrixStackNav} options={{ tabBarLabel: () => null, headerShown: false }} />
-            <Tab.Screen name="Dashboard" component={DashboardScreen} options={{ tabBarLabel: () => null, headerShown: false }} />
+            <Tab.Screen name="Dashboard" component={DashboardStackNav} options={{ tabBarLabel: () => null, headerShown: false }} />
             <Tab.Screen name="Pomodoro Timer" component={PomoScreen} options={{ tabBarLabel: () => null, headerShown: false }} />
             <Tab.Screen name="More" component={MoreStackNav} options={{ tabBarLabel: () => null, tabBarStyle: {display: 'none'}, headerShown: false }} />
   

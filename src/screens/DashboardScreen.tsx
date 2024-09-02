@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import colors from '../components/ColorTemplate';
 import GreetingMessage from '../components/GreetingMessage';
+import CalendarWidget from '../components/CalendarWidget';
 
 const DashboardScreen = () => {
   return (
@@ -27,6 +28,7 @@ const DashboardScreen = () => {
         </View>
 
         <View style={styles.calendarContainer}>
+          <CalendarWidget />
         
 
         </View>
@@ -47,7 +49,7 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     flexDirection: 'row', 
-    bottom: 15,
+    bottom: 5,
   },
   greetingContainer:{
     width: 263,
@@ -70,9 +72,9 @@ const styles = StyleSheet.create({
   },
   dashboardContainer: {
     width: 338,
-    height: 570,
+    height: 580,
     borderRadius: 10,
-    top: 10,
+    top: 15,
   },
   moodtrackerContainer: {
     width: 338,
@@ -90,7 +92,7 @@ const styles = StyleSheet.create({
   },
   calendarContainer: {
     width: 338,
-    height: 340,
+    height: 350,
     backgroundColor: colors.white,
     borderRadius: 10,
     top: 30,

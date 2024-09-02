@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     flexDirection: 'row', 
-    bottom: 15,
+    bottom: 5,
   },
   motivationalContainer:{
     width: 263,
@@ -184,10 +184,10 @@ const styles = StyleSheet.create({
   },
   todoContainer: {
     width: 338,
-    height: 570,
+    height: 580,
     backgroundColor: colors.white,
     borderRadius: 10,
-    top: 10,
+    top: 15,
     padding: 20,
   },
   text: {
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
   },
   flatList: {
     bottom: -30,
-    height: 430,
+    height: 440,
     overflow: 'hidden',
     marginHorizontal: 5
   },

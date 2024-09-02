@@ -15,3 +15,10 @@ export type MoreStackParamList = {
 
 export type MoreStackNavigationProp = NativeStackNavigationProp<MoreStackParamList>;
 
+export type DashboardStackParamList = {
+  Dashboards: undefined;
+  Calendar: undefined;
+  Agenda: undefined
+};
+
+export type DashboardStackNavigationProp = NativeStackNavigationProp<DashboardStackParamList>;

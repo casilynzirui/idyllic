@@ -140,7 +140,7 @@ container: {
 },
 headerContainer: {
     flexDirection: 'row', 
-    bottom: 15,
+    bottom: 5,
 },
 motivationalContainer:{
     width: 263,
@@ -168,10 +168,10 @@ imileyIcon2: {
 },
 pomoContainer: {
     width: 338,
-    height: 570,
+    height: 580,
     backgroundColor: colors.primary,
     borderRadius: 10,
-    top: 10,
+    top: 15,
     padding: 20,
     justifyContent: 'center',
     alignItems: 'center',
@@ -232,31 +232,19 @@ buttonContainer2: {
 resetButton: {
     padding: 10,
     alignItems: 'center',
-    bottom: -118,
+    bottom: -123,
     left: -140
 },
 resetButton2: {
     padding: 10,
     alignItems: 'center',
-    bottom: -65,
+    bottom: -70,
     left: -140
 },
 buttonIcon: {
     width: 30,
     height: 30,
 },
-addButton: {
-    backgroundColor: '#122437', 
-    padding: 10,
-    borderRadius: 5,
-    alignItems: 'center',
-},
-reduceButton: {
-    backgroundColor: '#FFF000', // Button color
-    padding: 10,
-    borderRadius: 5,
-    alignItems: 'center',
-}
 });
 
 export default PomodoroScreen;

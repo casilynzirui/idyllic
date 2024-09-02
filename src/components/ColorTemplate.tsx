@@ -8,6 +8,8 @@ const colors = {
     textAlternate: '#E5DCCC',
     white: '#FFFFFF',
     black: '#000000',
+    transparent: 'rgba(255, 0, 0, 0)',
+    lightAscent: '#EDE7DD'
 };
   
 export default colors;

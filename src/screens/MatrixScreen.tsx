@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     flexDirection: 'row', 
-    bottom: 15,
+    bottom: 5,
   },
   motivationalContainer:{
     width: 263,
@@ -64,9 +64,9 @@ const styles = StyleSheet.create({
   },
   matrixContainer: {
     width: 338,
-    height: 570,
+    height: 580,
     borderRadius: 10,
-    top: 10,
+    top: 15,
   },
   matrixRow: {
     flexDirection: 'row',
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   },
   matrixSquare: {
     width: 159,
-    height: 275,
+    height: 280,
     backgroundColor: colors.white,
     marginRight: 20,
     borderRadius: 10
