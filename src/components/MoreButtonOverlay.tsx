@@ -31,6 +31,7 @@ const MoreButtonOverlay: React.FC<MoreButtonOverlayProps> = ({ visible, onClose,
         <TouchableOpacity onPress={() => handleNavigate('Canvas')} style={styles.option}>
           <Text style={styles.optionText}>Canvas</Text>
         </TouchableOpacity>
+        <View style={styles.separatorLine} />
         <TouchableOpacity onPress={() => handleNavigate('Settings')} style={styles.option}>
           <Text style={styles.optionText}>Settings</Text>
         </TouchableOpacity>
@@ -45,7 +46,7 @@ const MoreButtonOverlay: React.FC<MoreButtonOverlayProps> = ({ visible, onClose,
       position: 'absolute',
       bottom: 55,
       right: 0,
-      backgroundColor: colors.ascent,
+      backgroundColor: colors.lightAscent,
       borderRadius: 10,
       padding: 10,
       width: 150,
@@ -58,7 +59,13 @@ const MoreButtonOverlay: React.FC<MoreButtonOverlayProps> = ({ visible, onClose,
     },
     optionText: {
       color: colors.primary,
-      fontSize: 14,
+      fontSize: 15,
+    },
+    separatorLine: {
+      width: '100%', 
+      height: 1, 
+      backgroundColor: colors.ascent,
+      marginVertical: 10
     },
   });
   

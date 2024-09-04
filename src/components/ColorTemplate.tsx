@@ -8,7 +8,7 @@ const colors = {
     textAlternate: '#E5DCCC',
     white: '#FFFFFF',
     black: '#000000',
-    transparent: 'rgba(255, 0, 0, 0)',
+    transparent: 'transparent',
     lightAscent: '#EDE7DD',
     // mood
     pinkMood: '#E5CCCC',

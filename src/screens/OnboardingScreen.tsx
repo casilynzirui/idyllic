@@ -96,7 +96,7 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
                     <Image source={require('../assets/imiley_loading.png')} style={styles.imileyIcon} />
                 </View>
                 <View style={styles.speechBubble3}>
-                <Text style={styles.speechText}> My name is</Text>
+                <Text style={styles.speechText4}> My name is</Text>
                 <TextInput
                     style={styles.speechText2}
                     placeholder=" _________________"
@@ -104,7 +104,6 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
                     value={idyllicUsername}
                     onChangeText={setIdyllicUsername}
                 />
-                    <View style={styles.pointyAngle3} />
                 </View>
                 <TouchableHighlight
                     style={styles.continueButton}
@@ -206,6 +205,12 @@ const styles = StyleSheet.create({
         lineHeight: 25,
         bottom: -10
     },
+    speechText4: {
+        fontSize: 18,
+        color: colors.textPrimary,
+        lineHeight: 25,
+        top: -2.5
+    },
     pointyAngle: {
         width: 0,
         height: 0,
@@ -255,8 +260,8 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: colors.textSecondary,
         lineHeight: 25,
-        bottom: -15,
         right: -5,
+        bottom: -2.5
     },
     pointyAngle3: {
         width: 0,

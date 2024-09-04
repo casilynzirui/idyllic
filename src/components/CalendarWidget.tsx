@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
     borderRadius: 10,
-    elevation: 5,
   },
   calendar: {
     borderRadius: 10,

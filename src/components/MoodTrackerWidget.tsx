@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
   trackerContainer: {
     padding: 10,
     borderRadius: 10,
-    elevation: 5,
   },
   trackerHeader: {
     flexDirection: 'row',
@@ -32,13 +31,13 @@ const styles = StyleSheet.create({
     right: -10,
     bottom: -5,
     fontWeight: '500',
-    fontSize: 15
+    fontSize: 16
   },
   forwardIcon: {
     width: 20,
     height: 20,
     transform: [{ rotate: '180deg' }],
-    right: -105,
+    right: -95,
     bottom: -5,
   }
 });

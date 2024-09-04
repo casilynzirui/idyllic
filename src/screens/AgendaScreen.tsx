@@ -189,9 +189,7 @@ const AgendaScreen = () => {
             <TouchableOpacity style={styles.addAgendaButton} onPress={addAgendaItem}>
                 <Text style={styles.addAgendaText}>Add Agenda</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={handleAgendaModalVisible}>
-              <Image source={require('../assets/addtask.png')} style={styles.plusIcon2} />
-            </TouchableOpacity>
+  
             <TouchableOpacity style={styles.closeAgendaButton} onPress={handleAgendaModalVisible}>
               <Image source={require('../assets/addtask.png')} style={styles.plusIcon3} />
           </TouchableOpacity>
@@ -265,10 +263,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    top: -5
   },
   modalContent: {
     width: 300,
-    height: 500,
+    height: 510,
     bottom: -53,
     backgroundColor: colors.white,
     borderRadius: 10,
@@ -398,7 +397,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.lightAscent,
     justifyContent: 'center',
     alignItems: 'center',
-    bottom: -65
+    bottom: -90
   },
   plusIcon3: {
     width: 20,
