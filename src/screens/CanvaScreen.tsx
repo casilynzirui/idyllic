@@ -3,12 +3,10 @@ import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, FlatList } 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import colors from '../components/ColorTemplate';
 import MotivationalMessages from '../components/MotivationalMessage';
-import { CalendarList } from 'react-native-calendars';
-import { useNavigation } from '@react-navigation/native';
-import { DashboardStackNavigationProp } from '../navigation/NavigationTypes';
 
-const CalendarScreen = () => {
-  const navigation = useNavigation<DashboardStackNavigationProp>();
+const CanvaScreen = () => {
+  
+  
 
   return (
     <View style={styles.container}>
@@ -21,31 +19,9 @@ const CalendarScreen = () => {
         </View>
       </View>
             
-      <View style={styles.calendarContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate('Dashboards')}>
-            <Image source={require('../assets/back.png')} style={styles.backIcon} />
-        </TouchableOpacity>
-
-        <CalendarList
-          current={new Date().toISOString().split('T')[0]}
-          scrollEnabled={true}   
-          showScrollIndicator={true} 
-          style={styles.calendarList}
-          theme={{
-            textSectionTitleColor: colors.ascent,
-            todayTextColor: colors.primary,
-            dayTextColor: colors.textPrimary,
-            textDisabledColor: colors.ascent,
-            monthTextColor: colors.textPrimary,
-            textMonthFontWeight: '500',
-            textDayFontWeight: '400',
-            calendarBackground: colors.transparent,
-          }}
-          calendarWidth={300}
-          onDayPress={(day) => {
-            navigation.navigate('Agenda');
-          }}
-        />
+      <View style={styles.CanvaContainer}>
+      
+        
       </View>
 
 
@@ -83,7 +59,7 @@ const styles = StyleSheet.create({
     width: 34,
     height: 11
   },
-  calendarContainer: {
+  CanvaContainer: {
     width: 338,
     height: 580,
     backgroundColor: colors.white,
@@ -94,18 +70,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
   },
-  calendarList: {
-    width: 370,
-    height: 500,
-    bottom: -5,
-  },
-  backIcon: {
-    width: 30,
-    height: 30,
-    top: -8
-  }
-  
 
 });
 
-export default CalendarScreen;
+export default CanvaScreen;

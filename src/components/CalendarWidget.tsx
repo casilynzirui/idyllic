@@ -26,6 +26,8 @@ const CalendarWidget = () => {
             arrowColor: colors.primary,
             monthTextColor: colors.textPrimary,
             textMonthFontWeight: '500',
+            textDayFontWeight: '400',
+
         }}
         onDayPress={() => {
           navigation.navigate('Agenda');

@@ -12,7 +12,7 @@ type CombinedNavigationProp = BottomTabNavigationProp<BottomTabParamList> & Nati
 interface MoreButtonOverlayProps {
     visible: boolean;
     onClose: () => void;
-    onSelect: (screen: 'Profile' | 'Settings') => void;
+    onSelect: (screen: 'Canvas' | 'Settings') => void;
 }
 
 const MoreButtonOverlay: React.FC<MoreButtonOverlayProps> = ({ visible, onClose, onSelect }) => {
@@ -20,7 +20,7 @@ const MoreButtonOverlay: React.FC<MoreButtonOverlayProps> = ({ visible, onClose,
 
   if (!visible) return null;
 
-  const handleNavigate = (screen: 'Profile' | 'Settings') => {
+  const handleNavigate = (screen: 'Canvas' | 'Settings') => {
     onSelect(screen);
     navigation.navigate('More', { screen }); 
   };
@@ -28,8 +28,8 @@ const MoreButtonOverlay: React.FC<MoreButtonOverlayProps> = ({ visible, onClose,
   return (
     <View style={styles.overlay}>
       <View style={styles.menu}>
-        <TouchableOpacity onPress={() => handleNavigate('Profile')} style={styles.option}>
-          <Text style={styles.optionText}>Profile</Text>
+        <TouchableOpacity onPress={() => handleNavigate('Canvas')} style={styles.option}>
+          <Text style={styles.optionText}>Canvas</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleNavigate('Settings')} style={styles.option}>
           <Text style={styles.optionText}>Settings</Text>

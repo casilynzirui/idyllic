@@ -149,6 +149,7 @@ const AgendaScreen = () => {
                 arrowColor: colors.primary,
                 monthTextColor: colors.textPrimary,
                 textMonthFontWeight: '500',
+                textDayFontWeight: '400',
                 selectedDayBackgroundColor: colors.ascent,
                 selectedDayTextColor: colors.textPrimary,
                 agendaKnobColor: colors.ascent,
@@ -318,7 +319,7 @@ const styles = StyleSheet.create({
     top: -382
   },
   agendaItem: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.lightAscent,
     flex: 1,
     borderRadius: 5,
     paddingTop: 10,
@@ -333,7 +334,7 @@ const styles = StyleSheet.create({
   agendaTitle: {
     color: colors.textPrimary,
     fontSize: 16,
-    backgroundColor: colors.white,
+    backgroundColor: colors.lightAscent,
     flex: 1,
     paddingLeft: 8,
     paddingBottom: 10,
@@ -342,7 +343,7 @@ const styles = StyleSheet.create({
   agendaDescription: {
     color: colors.textPrimary,
     fontSize: 15,
-    backgroundColor: colors.white,
+    backgroundColor: colors.lightAscent,
     flex: 1,
     borderRadius: 5,
     paddingTop: 10,
@@ -351,14 +352,14 @@ const styles = StyleSheet.create({
     top: -10
   },
   deleteAgendaButton: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.lightAscent,
     paddingTop: 10,
     paddingLeft: 10,
     marginRight: 10,
     top: -10
   },
   deleteAgendaButton2: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.lightAscent,
     borderRadius: 5,
     paddingBottom: 10,
     left: -10

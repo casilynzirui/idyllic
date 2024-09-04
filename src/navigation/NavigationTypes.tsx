@@ -9,7 +9,7 @@ export type BottomTabParamList = {
 export type BottomTabNavigationProp2 = BottomTabNavigationProp<BottomTabParamList>;
 
 export type MoreStackParamList = {
-    Profile: undefined;
+    Canvas: undefined;
     Settings: undefined;
   };
 
@@ -18,7 +18,8 @@ export type MoreStackNavigationProp = NativeStackNavigationProp<MoreStackParamLi
 export type DashboardStackParamList = {
   Dashboards: undefined;
   Calendar: undefined;
-  Agenda: undefined
+  Agenda: undefined;
+  MoodTracker: undefined;
 };
 
 export type DashboardStackNavigationProp = NativeStackNavigationProp<DashboardStackParamList>;

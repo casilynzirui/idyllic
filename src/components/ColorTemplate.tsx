@@ -9,7 +9,17 @@ const colors = {
     white: '#FFFFFF',
     black: '#000000',
     transparent: 'rgba(255, 0, 0, 0)',
-    lightAscent: '#EDE7DD'
+    lightAscent: '#EDE7DD',
+    // mood
+    pinkMood: '#E5CCCC',
+    greenMood: '#D5E5CC',
+    blueMood: '#CCE3E5',
+    purpleMood: '#D3CCE5',
+    yellowMood: '#EAE8B3',
+    orangeMood: '#EAD4B3',
+    greyMood: '#E5E5E5',
+
+
 };
   
 export default colors;
