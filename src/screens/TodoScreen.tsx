@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import colors from '../components/ColorTemplate';
 import MotivationalMessages from '../components/MotivationalMessage';
+import { useFocusEffect } from '@react-navigation/native';
+
 
 const TodoScreen = () => {
   const [todoText, setTodoText] = useState<string>('');
@@ -10,7 +12,6 @@ const TodoScreen = () => {
   const [editItem, setEditItem] = useState<string | null>(null);
   const [deletedItems, setDeletedItems] = useState<{ id: string; text: string }[]>([]);
   const [showDeletedItems, setShowDeletedItems] = useState(false);
-
 
   // Load and display todo items from storage when app starts
   useEffect(() => {
@@ -217,7 +218,7 @@ const styles = StyleSheet.create({
   checkBox: {
     width: 18,
     height: 18,
-    borderRadius: 5,
+    borderRadius: 3,
     borderWidth: 2,
     borderColor: colors.primary,
   },

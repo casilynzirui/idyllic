@@ -2,6 +2,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { NavigatorScreenParams } from '@react-navigation/native';
 
+
 export type BottomTabParamList = {
     More: NavigatorScreenParams<MoreStackParamList>;
 };
@@ -23,3 +24,4 @@ export type DashboardStackParamList = {
 };
 
 export type DashboardStackNavigationProp = NativeStackNavigationProp<DashboardStackParamList>;
+
