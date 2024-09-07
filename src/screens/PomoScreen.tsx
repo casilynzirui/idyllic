@@ -75,15 +75,17 @@ const PomodoroScreen = () => {
                 {timerMode === "Focus" ? (
                     <>
                         <View style={styles.timerContainer}>
-                            <Image source={require('../assets/imiley_loading.png')} style={styles.imileyIcon2} />
+                            <Image 
+                                style={isTimerStart ? styles.imileyIcon2 : styles.imileyIcon3}
+                                source={isTimerStart ? require('../assets/imiley_loading.png') : require('../assets/angry_imiley.png') } />
 
                             <TouchableOpacity 
-                                style={isTimerStart ? styles.buttonContainer : styles.buttonContainer} 
+                                style={isTimerStart ? styles.buttonContainer : styles.buttonContainer3} 
                                 onPress={handleButtonPress}
                                 activeOpacity={1}
                             >      
                                 <Image
-                                    style={styles.buttonIcon}
+                                    style={isTimerStart ? styles.buttonIcon : styles.buttonIcon }
                                     source={isTimerStart ? require('../assets/stopbutton.png') : require('../assets/playbutton.png')}
                                 />
                             </TouchableOpacity>
@@ -166,6 +168,10 @@ imileyIcon2: {
     height: 35,
     bottom: -10
 },
+imileyIcon3: {
+    width: 110,
+    height: 56,
+},
 pomoContainer: {
     width: 338,
     height: 580,
@@ -218,6 +224,15 @@ buttonContainer: {
     borderRadius: 55,
     bottom: -40
 },
+buttonContainer3: {
+    backgroundColor: colors.primary, 
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 55,
+    height: 55,
+    borderRadius: 55,
+    bottom: -30
+},
 buttonContainer2: {
     backgroundColor: colors.ascent, 
     borderColor: colors.alternate,
@@ -245,6 +260,7 @@ buttonIcon: {
     width: 30,
     height: 30,
 },
+
 });
 
 export default PomodoroScreen;

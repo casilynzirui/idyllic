@@ -10,15 +10,15 @@ import { useFocusEffect } from '@react-navigation/native';
 
 
 const trackerMoods = [
-  { name: 'Happy', color: colors.pinkMood },
-  { name: 'Sad', color: colors.greenMood },
-  { name: 'Angry', color: colors.blueMood },
-  { name: 'Calm', color: colors.purpleMood },
-  { name: 'Anxious', color: colors.yellowMood },
-  { name: 'Relax', color: colors.orangeMood },
-  { name: 'Remove', color: colors.greyMood },
-
+  { name: 'Kitty', color: colors.pinkMood, image: require('../assets/kitty_imiley.png') },
+  { name: 'Stun', color: colors.greenMood, image: require('../assets/stun_imiley.png')  },
+  { name: 'Sad', color: colors.blueMood, image: require('../assets/sad_imiley.png') },
+  { name: 'Sleepy', color: colors.purpleMood, image: require('../assets/sleepy_imiley.png') },
+  { name: 'Smirk', color: colors.yellowMood, image: require('../assets/smirk_imiley.png')   },
+  { name: 'Eyebrow', color: colors.orangeMood, image: require('../assets/eyebrow_imiley.png')  },
+  { name: 'Remove', color: colors.greyMood, image: require('../assets/happy_imiley.png')  },
 ];
+
 
 const DashboardScreen = ({ navigation }: any) => {
   const [moodTrackerData, setMoodTrackerData] = useState<{ [date: string]: string }>({});
@@ -84,7 +84,7 @@ const DashboardScreen = ({ navigation }: any) => {
             { backgroundColor: mood ? trackerMoods.find(m => m.name === mood)?.color : colors.greyMood },
           ]}
         >
-                    <Image source={require('../assets/imiley_loading.png')} style={styles.imileyIcon2} />
+                    <Image source={mood ? trackerMoods.find(m => m.name === mood)?.image : require('../assets/happy_imiley.png') } style={styles.imileyIcon2} />
 
         </View>
       </TouchableOpacity>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, FlatList, Modal, Button } from 'react-native';
+import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, Modal } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import colors from '../components/ColorTemplate';
 import MotivationalMessages from '../components/MotivationalMessage';
@@ -10,12 +10,12 @@ import { DashboardStackNavigationProp } from '../navigation/NavigationTypes';
 const AgendaScreen = () => {
   const navigation = useNavigation<DashboardStackNavigationProp>();
   const [agendaItems, setAgendaItems] = useState<{ [key: string]: { title: string; description: string }[] }>({});
-  const [newAgendaItem, setNewAgendaItem] = useState('');
   const [newAgendaTitle, setNewAgendaTitle] = useState('');
   const [newAgendaDescription, setNewAgendaDescription] = useState('');
-  const [editAgendaItems, setEditAgendaItems] = useState<{ day: string; index: number } | null>(null);
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [agendaModalVisible, setAgendaModalVisible] = useState(false);
+  const [editAgendaModalVisible, setEditAgendaModalVisible] = useState(false);
+
   
 
   useEffect(() => {
@@ -49,6 +49,25 @@ const AgendaScreen = () => {
       console.error('Failed to save items:', error);
     }
   };
+  
+  // Work in progress
+  const editAgendaItem = () => {
+    if (selectedDate && newAgendaTitle.trim().length > 0 && newAgendaDescription.trim().length > 0) {
+      const updatedAgendaItems = { ...agendaItems };
+      if (!updatedAgendaItems[selectedDate]) {
+        updatedAgendaItems[selectedDate] = [];
+      }
+      updatedAgendaItems[selectedDate].push({ 
+        title: newAgendaTitle, 
+        description: newAgendaDescription 
+      });
+      setAgendaItems(updatedAgendaItems);
+      saveAgendaItems(updatedAgendaItems);
+      setNewAgendaTitle('');
+      setNewAgendaDescription('');
+      handleAgendaModalVisible(!agendaModalVisible);
+    }
+  };
 
   const addAgendaItem = () => {
     if (selectedDate && newAgendaTitle.trim().length > 0 && newAgendaDescription.trim().length > 0) {
@@ -68,16 +87,30 @@ const AgendaScreen = () => {
     }
   };
 
-  const deleteAgendaItem = (date: string) => {
+  const deleteAgendaItem = (date: string, agendaItem: { title: string; description: string }) => {
     const updatedAgendaItems = { ...agendaItems };
 
     if (updatedAgendaItems[date]) {
-        delete updatedAgendaItems[date]; // To remove the item for the given date
+        const itemIndex = updatedAgendaItems[date].findIndex(
+            (item: { title: string; description: string }) =>
+                item.title === agendaItem.title && item.description === agendaItem.description
+        );
 
-        setAgendaItems(updatedAgendaItems);
-        saveAgendaItems(updatedAgendaItems);
+        if (itemIndex !== -1) {
+            updatedAgendaItems[date].splice(itemIndex, 1);
+
+            // Remove the entire date if no items remain
+            if (updatedAgendaItems[date].length === 0) {
+                delete updatedAgendaItems[date];
+            }
+
+            setAgendaItems(updatedAgendaItems);
+            saveAgendaItems(updatedAgendaItems);
+        } else {
+            console.error('Item not found for this date');
+        }
     } else {
-        console.error('No item found for this date');
+        console.error('No items found for this date');
     }
 };
 
@@ -88,10 +121,10 @@ const AgendaScreen = () => {
             <Text style={styles.agendaTitle}>{agendaItem.title}</Text>   
             <Text style={styles.agendaDescription}>{agendaItem.description}</Text>   
             <View style={styles.agendaItem2}>
-              <TouchableOpacity style={styles.deleteAgendaButton} onPress={() => deleteAgendaItem(selectedDate, index)} >
+              <TouchableOpacity style={styles.deleteAgendaButton} onPress={handleEditAgendaModalVisible} >
                     <Image source={require('../assets/edit.png')} style={styles.editIcon} />
               </TouchableOpacity>
-              <TouchableOpacity style={styles.deleteAgendaButton} onPress={() => deleteAgendaItem(selectedDate, index)} >
+              <TouchableOpacity style={styles.deleteAgendaButton} onPress={() => deleteAgendaItem(selectedDate, agendaItem)} >
                     <Image source={require('../assets/delete.png')} style={styles.deleteIcon} />
               </TouchableOpacity>
             </View>
@@ -107,6 +140,11 @@ const AgendaScreen = () => {
   const handleAgendaModalVisible = (day: any) => {
     setAgendaModalVisible(!agendaModalVisible);
   }
+
+  const handleEditAgendaModalVisible = (day: any) => {
+    setEditAgendaModalVisible(!editAgendaModalVisible);
+  }
+
 
   return (
     <View style={styles.container}>
@@ -191,6 +229,42 @@ const AgendaScreen = () => {
             </TouchableOpacity>
   
             <TouchableOpacity style={styles.closeAgendaButton} onPress={handleAgendaModalVisible}>
+              <Image source={require('../assets/addtask.png')} style={styles.plusIcon3} />
+          </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
+      {/* Modal for for editing agenda items */}
+      <Modal
+        transparent={true}
+        visible={editAgendaModalVisible}
+        onRequestClose={handleEditAgendaModalVisible}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <View style={styles.agendaInputContainer}>
+              <TextInput
+                style={styles.agendaInput}
+                placeholder="Enter agenda title"
+                value={newAgendaTitle} // aa
+                onChangeText={setNewAgendaTitle} // aa
+              />
+            </View>
+            <View style={styles.agendaInputContainer2}>
+            <TextInput
+                style={styles.agendaInput2}
+                placeholder="Enter agenda description"
+                value={newAgendaDescription} // aa
+                multiline={true}
+                onChangeText={setNewAgendaDescription} // aa
+              />
+            </View>
+            <TouchableOpacity style={styles.addAgendaButton} onPress={editAgendaItem}> 
+                <Text style={styles.addAgendaText}>Update Agenda</Text>
+            </TouchableOpacity>
+  
+            <TouchableOpacity style={styles.closeAgendaButton} onPress={handleEditAgendaModalVisible}>
               <Image source={require('../assets/addtask.png')} style={styles.plusIcon3} />
           </TouchableOpacity>
           </View>
