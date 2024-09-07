@@ -76,7 +76,7 @@ const DecideItQuadrant = ({ navigation }: any) => {
                         {displayNotes.map((note, index) => (
                             <TouchableOpacity key={index} style={styles.displayNoteContainer} onPress={() => handleEditNote(note, index)}>
                                 <View style={styles.displayNoteContainer2}>
-                                    <TouchableOpacity style={styles.checkBox} onPress={deleteDecideNoteEntry} />
+                                    <TouchableOpacity style={styles.checkBox} onPress={() => deleteDecideNoteEntry(note, index)} />
                                     <Text style={styles.displayNoteText}>{note}</Text>
                                 </View>
                                 

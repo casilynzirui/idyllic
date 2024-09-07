@@ -1,7 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TodoScreen from '../screens/TodoScreen';
-import DashboardScreen from '../screens/DashboardScreen';
 import PomoScreen from '../screens/PomoScreen';
 import CustomTabBar from './CustomTabBar';
 import MoreStackNav from './MoreStackNav';
