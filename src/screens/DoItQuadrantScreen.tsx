@@ -102,115 +102,115 @@ const DoItQuadrant = ({ navigation }: any) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: colors.background,
-    },
-    headerContainer: {
-        flexDirection: 'row', 
-        bottom: 5,
-    },
-    motivationalContainer:{
-        width: 263,
-        height: 60,
-        backgroundColor: colors.ascent,
-        marginRight: 15,
-        borderRadius: 20,
-    },
-    imileyContainer: {
-        width: 60,
-        height: 60,
-        backgroundColor: colors.ascent,
-        borderRadius: 50,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    imileyIcon: {
-        width: 34,
-        height: 11
-    },
-    quadrantContainer: {
-        width: 338,
-        height: 580,
-        backgroundColor: colors.white,
-        borderRadius: 10,
-        top: 15,
-        padding: 20,
-    },
-    quadrantHeaderContainer: {
-        height: 35
-    },
-    quadrantHeader: {
-        flexDirection: 'row',
-    },
-    quadrantIcon: {
-        width: 20,
-        height: 20,
-        marginRight: 10,
-    },
-    quadrantText: {
-        fontSize: 18,
-        fontWeight: '500',
-        color: colors.textPrimary,
-    },
-    textInput: {
-        backgroundColor: colors.lightAscent,
-        fontSize: 16,
-        paddingHorizontal: 20,
-        paddingTop: 30,
-        paddingBottom: 20,
-        height: 200,
-    },
-    addButtonContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    addButton: {
-        width: 50, 
-        height: 50,
-        borderRadius: 50,
-        backgroundColor: colors.ascent,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    plusIcon: {
-        width: 20,
-        height: 20
-    },
-    noteContainer: {
-        paddingTop: 10,
+container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.background,
+},
+headerContainer: {
+    flexDirection: 'row', 
+    bottom: 5,
+},
+motivationalContainer:{
+    width: 263,
+    height: 60,
+    backgroundColor: colors.ascent,
+    marginRight: 15,
+    borderRadius: 20,
+},
+imileyContainer: {
+    width: 60,
+    height: 60,
+    backgroundColor: colors.ascent,
+    borderRadius: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+},
+imileyIcon: {
+    width: 34,
+    height: 11
+},
+quadrantContainer: {
+    width: 338,
+    height: 580,
+    backgroundColor: colors.white,
+    borderRadius: 10,
+    top: 15,
+    padding: 20,
+},
+quadrantHeaderContainer: {
+    height: 35
+},
+quadrantHeader: {
+    flexDirection: 'row',
+},
+quadrantIcon: {
+    width: 20,
+    height: 20,
+    marginRight: 10,
+},
+quadrantText: {
+    fontSize: 18,
+    fontWeight: '500',
+    color: colors.textPrimary,
+},
+textInput: {
+    backgroundColor: colors.lightAscent,
+    fontSize: 16,
+    paddingHorizontal: 20,
+    paddingTop: 30,
+    paddingBottom: 20,
+    height: 200,
+},
+addButtonContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+},
+addButton: {
+    width: 50, 
+    height: 50,
+    borderRadius: 50,
+    backgroundColor: colors.ascent,
+    justifyContent: 'center',
+    alignItems: 'center',
+},
+plusIcon: {
+    width: 20,
+    height: 20
+},
+noteContainer: {
+    paddingTop: 10,
 
-    },
-    displayNoteContainer: {
-        height: 50,
-        marginBottom: 20,
+},
+displayNoteContainer: {
+    height: 50,
+    marginBottom: 20,
 
-    },
-    displayNoteContainer2: {
-        flexDirection: 'row',
-        marginBottom: 10
+},
+displayNoteContainer2: {
+    flexDirection: 'row',
+    marginBottom: 10
 
-    },
-    checkBox: {
-        width: 18,
-        height: 18,
-        borderRadius: 3,
-        borderWidth: 2,
-        borderColor: colors.ascent,
-        marginRight: 10
-    },
-    displayNoteText: {
-        fontSize: 15,
-        color: colors.textPrimary
-    },
-    separatorLine: {
-        width: '100%', 
-        height: 1, 
-        backgroundColor: colors.lightAscent,
-        marginVertical: 10,
-      },
+},
+checkBox: {
+    width: 18,
+    height: 18,
+    borderRadius: 3,
+    borderWidth: 2,
+    borderColor: colors.ascent,
+    marginRight: 10
+},
+displayNoteText: {
+    fontSize: 15,
+    color: colors.textPrimary
+},
+separatorLine: {
+    width: '100%', 
+    height: 1, 
+    backgroundColor: colors.lightAscent,
+    marginVertical: 10,
+},
 });
 
 export default DoItQuadrant;

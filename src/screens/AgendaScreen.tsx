@@ -8,338 +8,332 @@ import { useNavigation } from '@react-navigation/native';
 import { DashboardStackNavigationProp } from '../navigation/NavigationTypes';
 
 const AgendaScreen = () => {
-  const navigation = useNavigation<DashboardStackNavigationProp>();
-  const [agendaItems, setAgendaItems] = useState<{ [key: string]: { title: string; description: string }[] }>({});
-  const [newAgendaTitle, setNewAgendaTitle] = useState('');
-  const [newAgendaDescription, setNewAgendaDescription] = useState('');
-  const [selectedDate, setSelectedDate] = useState<string>('');
-  const [agendaModalVisible, setAgendaModalVisible] = useState(false);
-  const [editAgendaModalVisible, setEditAgendaModalVisible] = useState(false);
+    const navigation = useNavigation<DashboardStackNavigationProp>();
+    const [agendaItems, setAgendaItems] = useState<{ [key: string]: { title: string; description: string }[] }>({});
+    const [newAgendaTitle, setNewAgendaTitle] = useState('');
+    const [newAgendaDescription, setNewAgendaDescription] = useState('');
+    const [selectedDate, setSelectedDate] = useState<string>('');
+    const [agendaModalVisible, setAgendaModalVisible] = useState(false);
+    const [editAgendaModalVisible, setEditAgendaModalVisible] = useState(false);
 
-  
+    
 
-  useEffect(() => {
-    loadAgendaItems();
-    // To initialize today's date in the items
-    const today = new Date().toISOString().split('T')[0];
-    setSelectedDate(today);
-    if (!agendaItems[today]) {
-      setAgendaItems((prevAgendaItems) => ({
-        ...prevAgendaItems,
-        [today]: [],
-      }));
-    }
-  }, []);
-
-  const loadAgendaItems = async () => {
-    try {
-      const savedAgendaItems = await AsyncStorage.getItem('agendaItems');
-      if (savedAgendaItems) {
-        setAgendaItems(JSON.parse(savedAgendaItems));
-      }
-    } catch (error) {
-      console.error('Failed to load items:', error);
-    }
-  };
-
-  const saveAgendaItems = async (updatedAgendaItems: { [key: string]: any[] }) => {
-    try {
-      await AsyncStorage.setItem('agendaItems', JSON.stringify(updatedAgendaItems));
-    } catch (error) {
-      console.error('Failed to save items:', error);
-    }
-  };
-  
-  // Work in progress
-  const editAgendaItem = () => {
-    if (selectedDate && newAgendaTitle.trim().length > 0 && newAgendaDescription.trim().length > 0) {
-      const updatedAgendaItems = { ...agendaItems };
-      if (!updatedAgendaItems[selectedDate]) {
-        updatedAgendaItems[selectedDate] = [];
-      }
-      updatedAgendaItems[selectedDate].push({ 
-        title: newAgendaTitle, 
-        description: newAgendaDescription 
-      });
-      setAgendaItems(updatedAgendaItems);
-      saveAgendaItems(updatedAgendaItems);
-      setNewAgendaTitle('');
-      setNewAgendaDescription('');
-      handleAgendaModalVisible(!agendaModalVisible);
-    }
-  };
-
-  const addAgendaItem = () => {
-    if (selectedDate && newAgendaTitle.trim().length > 0 && newAgendaDescription.trim().length > 0) {
-      const updatedAgendaItems = { ...agendaItems };
-      if (!updatedAgendaItems[selectedDate]) {
-        updatedAgendaItems[selectedDate] = [];
-      }
-      updatedAgendaItems[selectedDate].push({ 
-        title: newAgendaTitle, 
-        description: newAgendaDescription 
-      });
-      setAgendaItems(updatedAgendaItems);
-      saveAgendaItems(updatedAgendaItems);
-      setNewAgendaTitle('');
-      setNewAgendaDescription('');
-      handleAgendaModalVisible(!agendaModalVisible);
-    }
-  };
-
-  const deleteAgendaItem = (date: string, agendaItem: { title: string; description: string }) => {
-    const updatedAgendaItems = { ...agendaItems };
-
-    if (updatedAgendaItems[date]) {
-        const itemIndex = updatedAgendaItems[date].findIndex(
-            (item: { title: string; description: string }) =>
-                item.title === agendaItem.title && item.description === agendaItem.description
-        );
-
-        if (itemIndex !== -1) {
-            updatedAgendaItems[date].splice(itemIndex, 1);
-
-            // Remove the entire date if no items remain
-            if (updatedAgendaItems[date].length === 0) {
-                delete updatedAgendaItems[date];
-            }
-
-            setAgendaItems(updatedAgendaItems);
-            saveAgendaItems(updatedAgendaItems);
-        } else {
-            console.error('Item not found for this date');
+    useEffect(() => {
+        loadAgendaItems();
+        // To initialize today's date in the items
+        const today = new Date().toISOString().split('T')[0];
+        setSelectedDate(today);
+            if (!agendaItems[today]) {
+        setAgendaItems((prevAgendaItems) => ({
+            ...prevAgendaItems,
+            [today]: [],
+        }));
         }
-    } else {
-        console.error('No items found for this date');
-    }
+    }, []);
+
+    const loadAgendaItems = async () => {
+        try {
+            const savedAgendaItems = await AsyncStorage.getItem('agendaItems');
+        if (savedAgendaItems) {
+            setAgendaItems(JSON.parse(savedAgendaItems));
+        }
+        } catch (error) {
+            console.error('Failed to load items:', error);
+        }
+    };
+
+    const saveAgendaItems = async (updatedAgendaItems: { [key: string]: any[] }) => {
+        try {
+            await AsyncStorage.setItem('agendaItems', JSON.stringify(updatedAgendaItems));
+        } catch (error) {
+            console.error('Failed to save items:', error);
+        }
+    };
+    
+    // Work in progress
+    const editAgendaItem = () => {
+        if (selectedDate && newAgendaTitle.trim().length > 0 && newAgendaDescription.trim().length > 0) {
+        const updatedAgendaItems = { ...agendaItems };
+        if (!updatedAgendaItems[selectedDate]) {
+            updatedAgendaItems[selectedDate] = [];
+        }
+        updatedAgendaItems[selectedDate].push({ 
+            title: newAgendaTitle, 
+            description: newAgendaDescription 
+        });
+        setAgendaItems(updatedAgendaItems);
+        saveAgendaItems(updatedAgendaItems);
+        setNewAgendaTitle('');
+        setNewAgendaDescription('');
+        handleAgendaModalVisible(!agendaModalVisible);
+        }
+    };
+
+    const addAgendaItem = () => {
+        if (selectedDate && newAgendaTitle.trim().length > 0 && newAgendaDescription.trim().length > 0) {
+        const updatedAgendaItems = { ...agendaItems };
+        if (!updatedAgendaItems[selectedDate]) {
+            updatedAgendaItems[selectedDate] = [];
+        }
+        updatedAgendaItems[selectedDate].push({ 
+            title: newAgendaTitle, 
+            description: newAgendaDescription 
+        });
+        setAgendaItems(updatedAgendaItems);
+        saveAgendaItems(updatedAgendaItems);
+        setNewAgendaTitle('');
+        setNewAgendaDescription('');
+        handleAgendaModalVisible(!agendaModalVisible);
+        }
+    };
+
+    const deleteAgendaItem = (date: string, agendaItem: { title: string; description: string }) => {
+        const updatedAgendaItems = { ...agendaItems };
+
+        if (updatedAgendaItems[date]) {
+            const itemIndex = updatedAgendaItems[date].findIndex(
+                (item: { title: string; description: string }) =>
+                    item.title === agendaItem.title && item.description === agendaItem.description
+            );
+
+            if (itemIndex !== -1) {
+                updatedAgendaItems[date].splice(itemIndex, 1);
+
+                if (updatedAgendaItems[date].length === 0) {
+                    delete updatedAgendaItems[date];
+                }
+
+                setAgendaItems(updatedAgendaItems);
+                saveAgendaItems(updatedAgendaItems);
+            } else {
+                console.error('Item not found for this date');
+            }
+        } else {
+            console.error('No items found for this date');
+        }
 };
 
-  const renderItem = (agendaItem: { title: string; description: string }, index: number) => {
-    console.log('Rendering agenda item:', agendaItem); 
-    return (
-        <View style={styles.agendaItem}>
-            <Text style={styles.agendaTitle}>{agendaItem.title}</Text>   
-            <Text style={styles.agendaDescription}>{agendaItem.description}</Text>   
-            <View style={styles.agendaItem2}>
-              <TouchableOpacity style={styles.deleteAgendaButton} onPress={handleEditAgendaModalVisible} >
-                    <Image source={require('../assets/edit.png')} style={styles.editIcon} />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.deleteAgendaButton} onPress={() => deleteAgendaItem(selectedDate, agendaItem)} >
-                    <Image source={require('../assets/delete.png')} style={styles.deleteIcon} />
-              </TouchableOpacity>
+    const renderItem = (agendaItem: { title: string; description: string }, index: number) => {
+        return (
+            <View style={styles.agendaItem}>
+                <Text style={styles.agendaTitle}>{agendaItem.title}</Text>   
+                <Text style={styles.agendaDescription}>{agendaItem.description}</Text>   
+                <View style={styles.agendaItem2}>
+                <TouchableOpacity style={styles.deleteAgendaButton} onPress={handleEditAgendaModalVisible} >
+                        <Image source={require('../assets/edit.png')} style={styles.editIcon} />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.deleteAgendaButton} onPress={() => deleteAgendaItem(selectedDate, agendaItem)} >
+                        <Image source={require('../assets/delete.png')} style={styles.deleteIcon} />
+                </TouchableOpacity>
+                </View>
             </View>
-        </View>
-    );
-  };
+        );
+    };
 
 
-  const onDayPress = (day: any) => {
-    setSelectedDate(day.dateString);
-  };
+    const onDayPress = (day: any) => {
+        setSelectedDate(day.dateString);
+    };
 
-  const handleAgendaModalVisible = (day: any) => {
-    setAgendaModalVisible(!agendaModalVisible);
-  }
+    const handleAgendaModalVisible = (day: any) => {
+        setAgendaModalVisible(!agendaModalVisible);
+    }
 
-  const handleEditAgendaModalVisible = (day: any) => {
-    setEditAgendaModalVisible(!editAgendaModalVisible);
-  }
+    const handleEditAgendaModalVisible = (day: any) => {
+        setEditAgendaModalVisible(!editAgendaModalVisible);
+    }
 
 
   return (
-    <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <View style={styles.motivationalContainer}>
-          <MotivationalMessages />
+        <View style={styles.container}>
+        <View style={styles.headerContainer}>
+            <View style={styles.motivationalContainer}>
+                <MotivationalMessages />
+            </View>
+            <View style={styles.imileyContainer}>
+                <Image source={require('../assets/imiley_loading.png')} style={styles.imileyIcon} />
+            </View>
         </View>
-        <View style={styles.imileyContainer}>
-          <Image source={require('../assets/imiley_loading.png')} style={styles.imileyIcon} />
-        </View>
-      </View>
-            
-      <View style={styles.agendaContainer}>
-        <View style={styles.agendaHeader}>
-        <TouchableOpacity onPress={() => navigation.navigate('Dashboards')}>
-            <Image source={require('../assets/back.png')} style={styles.backIcon} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleAgendaModalVisible}>
+                
+        <View style={styles.agendaContainer}>
+            <View style={styles.agendaHeader}>
+                <TouchableOpacity onPress={() => navigation.navigate('Dashboards')}>
+                    <Image source={require('../assets/back.png')} style={styles.backIcon} />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleAgendaModalVisible}>
                     <Image source={require('../assets/addtask.png')} style={styles.plusIcon} />
-        </TouchableOpacity>
-        </View>
+                </TouchableOpacity>
+            </View>
 
-        <Agenda
-            style={styles.agenda}
-            items={agendaItems}
-            selected={selectedDate || undefined}
-            renderItem={renderItem}
-            rowHasChanged={(row1, row2) => row1.title !== row2.title || row1.description !== row2.description}
-            onDayPress={onDayPress}
-            renderEmptyData={() => (
-                <View style={styles.emptyAgendaContainer}>
-                  <Text style={styles.agendaText2}>No agenda items for this date</Text>
+            <Agenda
+                style={styles.agenda}
+                items={agendaItems}
+                selected={selectedDate || undefined}
+                renderItem={renderItem}
+                rowHasChanged={(row1, row2) => row1.title !== row2.title || row1.description !== row2.description}
+                onDayPress={onDayPress}
+                renderEmptyData={() => (
+                    <View style={styles.emptyAgendaContainer}>
+                        <Text style={styles.agendaText2}>No agenda items for this date</Text>
+                    </View>
+                )}
+                theme={{
+                    textSectionTitleColor: colors.ascent,
+                    todayTextColor: colors.primary,
+                    dayTextColor: colors.textPrimary,
+                    textDisabledColor: colors.ascent,
+                    arrowColor: colors.primary,
+                    monthTextColor: colors.textPrimary,
+                    textMonthFontWeight: '500',
+                    textDayFontWeight: '400',
+                    selectedDayBackgroundColor: colors.ascent,
+                    selectedDayTextColor: colors.textPrimary,
+                    agendaKnobColor: colors.ascent,
+                    agendaTodayColor: colors.primary,
+                    agendaDayTextColor: colors.ascent,     
+                    agendaDayNumColor: colors.ascent,  
+                    dotColor: colors.ascent,
+                    selectedDotColor: colors.ascent,
+                }}
+            />
+    
+        {/* Modal for for adding new agenda items */}
+        <Modal
+            transparent={true}
+            visible={agendaModalVisible}
+            onRequestClose={handleAgendaModalVisible}
+        >
+            <View style={styles.modalContainer}>
+                <View style={styles.modalContent}>
+                    <View style={styles.agendaInputContainer}>
+                        <TextInput
+                            style={styles.agendaInput}
+                            placeholder="Enter agenda title"
+                            value={newAgendaTitle}
+                            onChangeText={setNewAgendaTitle}
+                        />
+                    </View>
+                    <View style={styles.agendaInputContainer2}>
+                        <TextInput
+                            style={styles.agendaInput2}
+                            placeholder="Enter agenda description"
+                            value={newAgendaDescription}
+                            multiline={true}
+                            onChangeText={setNewAgendaDescription}
+                        />
+                    </View>
+                    <TouchableOpacity style={styles.addAgendaButton} onPress={addAgendaItem}>
+                        <Text style={styles.addAgendaText}>Add Agenda</Text>
+                    </TouchableOpacity>
+        
+                    <TouchableOpacity style={styles.closeAgendaButton} onPress={handleAgendaModalVisible}>
+                        <Image source={require('../assets/addtask.png')} style={styles.plusIcon3} />
+                    </TouchableOpacity>
                 </View>
-              )}
-            theme={{
-                textSectionTitleColor: colors.ascent,
-                todayTextColor: colors.primary,
-                dayTextColor: colors.textPrimary,
-                textDisabledColor: colors.ascent,
-                arrowColor: colors.primary,
-                monthTextColor: colors.textPrimary,
-                textMonthFontWeight: '500',
-                textDayFontWeight: '400',
-                selectedDayBackgroundColor: colors.ascent,
-                selectedDayTextColor: colors.textPrimary,
-                agendaKnobColor: colors.ascent,
-                agendaTodayColor: colors.primary,
-                agendaDayTextColor: colors.ascent,     
-                agendaDayNumColor: colors.ascent,  
-                dotColor: colors.ascent,
-                selectedDotColor: colors.ascent,
-            }}
-        />
-   
-      {/* Modal for for adding new agenda items */}
-      <Modal
-        transparent={true}
-        visible={agendaModalVisible}
-        onRequestClose={handleAgendaModalVisible}
-      >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <View style={styles.agendaInputContainer}>
-              <TextInput
-                style={styles.agendaInput}
-                placeholder="Enter agenda title"
-                value={newAgendaTitle}
-                onChangeText={setNewAgendaTitle}
-              />
             </View>
-            <View style={styles.agendaInputContainer2}>
-            <TextInput
-                style={styles.agendaInput2}
-                placeholder="Enter agenda description"
-                value={newAgendaDescription}
-                multiline={true}
-                onChangeText={setNewAgendaDescription}
-              />
-            </View>
-            <TouchableOpacity style={styles.addAgendaButton} onPress={addAgendaItem}>
-                <Text style={styles.addAgendaText}>Add Agenda</Text>
+        </Modal>
+
+        {/* Modal for for editing agenda items */}
+        <Modal
+            transparent={true}
+            visible={editAgendaModalVisible}
+            onRequestClose={handleEditAgendaModalVisible}
+        >
+            <View style={styles.modalContainer}>
+            <View style={styles.modalContent}>
+                <View style={styles.agendaInputContainer}>
+                <TextInput
+                    style={styles.agendaInput}
+                    placeholder="Enter agenda title"
+                    value={newAgendaTitle} // aa
+                    onChangeText={setNewAgendaTitle} // aa
+                />
+                </View>
+                <View style={styles.agendaInputContainer2}>
+                <TextInput
+                    style={styles.agendaInput2}
+                    placeholder="Enter agenda description"
+                    value={newAgendaDescription} // aa
+                    multiline={true}
+                    onChangeText={setNewAgendaDescription} // aa
+                />
+                </View>
+                <TouchableOpacity style={styles.addAgendaButton} onPress={editAgendaItem}> 
+                    <Text style={styles.addAgendaText}>Update Agenda</Text>
+                </TouchableOpacity>
+    
+                <TouchableOpacity style={styles.closeAgendaButton} onPress={handleEditAgendaModalVisible}>
+                <Image source={require('../assets/addtask.png')} style={styles.plusIcon3} />
             </TouchableOpacity>
-  
-            <TouchableOpacity style={styles.closeAgendaButton} onPress={handleAgendaModalVisible}>
-              <Image source={require('../assets/addtask.png')} style={styles.plusIcon3} />
-          </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
-
-      {/* Modal for for editing agenda items */}
-      <Modal
-        transparent={true}
-        visible={editAgendaModalVisible}
-        onRequestClose={handleEditAgendaModalVisible}
-      >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <View style={styles.agendaInputContainer}>
-              <TextInput
-                style={styles.agendaInput}
-                placeholder="Enter agenda title"
-                value={newAgendaTitle} // aa
-                onChangeText={setNewAgendaTitle} // aa
-              />
             </View>
-            <View style={styles.agendaInputContainer2}>
-            <TextInput
-                style={styles.agendaInput2}
-                placeholder="Enter agenda description"
-                value={newAgendaDescription} // aa
-                multiline={true}
-                onChangeText={setNewAgendaDescription} // aa
-              />
             </View>
-            <TouchableOpacity style={styles.addAgendaButton} onPress={editAgendaItem}> 
-                <Text style={styles.addAgendaText}>Update Agenda</Text>
-            </TouchableOpacity>
-  
-            <TouchableOpacity style={styles.closeAgendaButton} onPress={handleEditAgendaModalVisible}>
-              <Image source={require('../assets/addtask.png')} style={styles.plusIcon3} />
-          </TouchableOpacity>
-          </View>
+        </Modal>
         </View>
-      </Modal>
-
-  
-      </View>
-
-
-    </View>
-  );
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
-  container: {
+container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: colors.background,
-  },
-  headerContainer: {
+},
+headerContainer: {
     flexDirection: 'row', 
     bottom: 5,
-  },
-  motivationalContainer:{
+},
+motivationalContainer:{
     width: 263,
     height: 60,
     backgroundColor: colors.ascent,
     marginRight: 15,
     borderRadius: 20,
-  },
-  imileyContainer: {
+},
+imileyContainer: {
     width: 60,
     height: 60,
     backgroundColor: colors.ascent,
     borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  imileyIcon: {
+},
+imileyIcon: {
     width: 34,
     height: 11
-  },
-  agendaContainer: {
+},
+agendaContainer: {
     width: 338,
     height: 580,
     backgroundColor: colors.white,
     borderRadius: 10,
     top: 15,
     padding: 20,
-  },
-  agendaHeader: {
+},
+agendaHeader: {
     flexDirection: 'row'
-  },
-  agenda: {
+},
+agenda: {
     bottom: -3,
     borderRadius: 10
-  },
-  text: {
+},
+text: {
     fontSize: 20,
-  },
-  backIcon: {
+},
+backIcon: {
     width: 30,
     height: 30,
     top: -8,
     left: -5
-  },
-  modalContainer: {
+},
+modalContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     top: -5
-  },
-  modalContent: {
+},
+modalContent: {
     width: 300,
     height: 510,
     bottom: -53,
@@ -349,49 +343,48 @@ const styles = StyleSheet.create({
     borderColor: colors.ascent,
     padding: 20,
     alignItems: 'center',
-  },
-  agendaInputContainer: {
+},
+agendaInputContainer: {
     width: '100%',
     backgroundColor: colors.lightAscent, 
     alignItems: 'center',
     borderRadius: 10,
     bottom: -20,
-  },
-  agendaInput: {
+},
+agendaInput: {
     width: '90%',
     padding: 10,
     margin: 5,
     backgroundColor: colors.lightAscent,
     color: colors.textPrimary,
-  },
-  agendaInputContainer2: {
+},
+agendaInputContainer2: {
     width: '100%',
     height: 230,
     backgroundColor: colors.lightAscent, 
     alignItems: 'center',
     borderRadius: 10,
     bottom: -30
-
-  },
-  agendaInput2: {
+},
+agendaInput2: {
     width: '90%',
     padding: 10,
     margin: 5,
     backgroundColor: colors.lightAscent,
     color: colors.textPrimary,
-  },
-  plusIcon: {
+},
+plusIcon: {
     width: 16,
     height: 16,
     right: -245
-  },
-  plusIcon2: {
+},
+plusIcon2: {
     width: 16,
     height: 16,
     right: -134,
     top: -382
-  },
-  agendaItem: {
+},
+agendaItem: {
     backgroundColor: colors.lightAscent,
     flex: 1,
     borderRadius: 5,
@@ -400,11 +393,11 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginTop: 25,
     fontWeight: '500'
-  },
-  agendaItem2: {
+},
+agendaItem2: {
     flexDirection: 'row'
-  },
-  agendaTitle: {
+},
+agendaTitle: {
     color: colors.textPrimary,
     fontSize: 16,
     backgroundColor: colors.lightAscent,
@@ -412,8 +405,8 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
     paddingBottom: 10,
     fontWeight: '500'
-  },
-  agendaDescription: {
+},
+agendaDescription: {
     color: colors.textPrimary,
     fontSize: 15,
     backgroundColor: colors.lightAscent,
@@ -423,32 +416,31 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
     marginRight: 10,
     top: -10
-  },
-  deleteAgendaButton: {
+},
+deleteAgendaButton: {
     backgroundColor: colors.lightAscent,
     paddingTop: 10,
     paddingLeft: 10,
     marginRight: 10,
     top: -10
-  },
-  deleteAgendaButton2: {
+},
+deleteAgendaButton2: {
     backgroundColor: colors.lightAscent,
     borderRadius: 5,
     paddingBottom: 10,
     left: -10
-  },
-
-  emptyAgendaContainer: {
+},
+emptyAgendaContainer: {
     backgroundColor: colors.white,
     height: '100%',
-  },
-  agendaText2: {
+},
+agendaText2: {
     color: colors.textPrimary,
     fontSize: 15,
     bottom: -15,
     right: -20
-  },
-  addAgendaButton: {
+},
+addAgendaButton: {
     width: '60%',
     height: 40,
     backgroundColor: colors.white, 
@@ -458,13 +450,13 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: colors.lightAscent,
     justifyContent: 'center',
-  },
-  addAgendaText: {
+},
+addAgendaText: {
     color: colors.textSecondary,
     fontSize: 15,
     fontWeight: '500'
-  },
-  closeAgendaButton: {
+},
+closeAgendaButton: {
     width: 45, 
     height: 45,
     borderRadius: 45,
@@ -472,25 +464,24 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     bottom: -90
-  },
-  plusIcon3: {
+},
+plusIcon3: {
     width: 20,
     height: 20,
     transform: [{ rotate: '45deg' }],
-  },
-  editIcon: {
+},
+editIcon: {
     width: 18,
     height: 18,
     right: -155,
     bottom: -2
-  },
-  deleteIcon: {
+},
+deleteIcon: {
     width: 20,
     height: 20,
     right: -140,
-  },
+},
   
-
 });
 
 export default AgendaScreen;

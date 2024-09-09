@@ -10,6 +10,7 @@ const colors = {
     black: '#000000',
     transparent: 'transparent',
     lightAscent: '#EDE7DD',
+    
     // mood
     pinkMood: '#E5CCCC',
     greenMood: '#D5E5CC',

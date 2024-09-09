@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DashboardScreen from '../screens/DashboardScreen';
 import CalendarScreen from '../screens/CalendarScreen';
@@ -16,9 +16,6 @@ const DashboardStackNav = () => {
             <Stack.Screen name="Agenda" component={AgendaScreen} options={{ headerShown: false }} />
             <Stack.Screen name="MoodTracker" component={MoodTrackerScreen} options={{ headerShown: false }} />
             <Stack.Screen name="DoIt" component={DoItQuadrant} options={{ headerShown: false }} />
-
-
-
         </Stack.Navigator>
 
     );

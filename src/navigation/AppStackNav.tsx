@@ -45,29 +45,15 @@ const AppStackNav = () => {
         <NavigationContainer>
             <Stack.Navigator screenOptions={{ animationEnabled: false }}>
                 {isOnboardingCompleted === null ? (
-                    <Stack.Screen
-                        name="Loading"
-                        component={LoadingScreen} 
-                        options={{ headerShown: false }}
-                    />
+                    <Stack.Screen name="Loading" component={LoadingScreen} options={{ headerShown: false }}/>
                 ) : !isOnboardingCompleted ? (
-                    <Stack.Screen 
-                        name="Onboarding"
-                        options={{ headerShown: false }}
-                    >
+                    <Stack.Screen name="Onboarding" options={{ headerShown: false }}>
                         {props => (
-                            <OnboardingScreen
-                                {...props}
-                                onComplete={() => setIsOnboardingCompleted(true)}
-                            />
+                            <OnboardingScreen {...props} onComplete={() => setIsOnboardingCompleted(true)}/>
                         )}
                     </Stack.Screen>
                 ) : (
-                    <Stack.Screen
-                        name="Main"
-                        component={BottomTabBar} 
-                        options={{ headerShown: false }}
-                    />
+                    <Stack.Screen name="Main" component={BottomTabBar} options={{ headerShown: false }}/>
                 )}
             </Stack.Navigator>
         </NavigationContainer>

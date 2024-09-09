@@ -19,27 +19,27 @@ const MoodTrackerWidget = () => {
 };
 
 const styles = StyleSheet.create({
-  trackerContainer: {
+trackerContainer: {
     padding: 10,
     borderRadius: 10,
-  },
-  trackerHeader: {
+},
+trackerHeader: {
     flexDirection: 'row',
-  },
-  trackerText: {
+},
+trackerText: {
     color: colors.textPrimary,
     right: -10,
     bottom: -5,
     fontWeight: '500',
     fontSize: 16
-  },
-  forwardIcon: {
+},
+forwardIcon: {
     width: 20,
     height: 20,
     transform: [{ rotate: '180deg' }],
     right: -95,
     bottom: -5,
-  }
+}
 });
 
 export default MoodTrackerWidget;
