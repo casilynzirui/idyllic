@@ -1,12 +1,8 @@
-<<<<<<< HEAD
-# idyllic
-final year project for university of london computer science degree
-=======
-<<<<<<< HEAD
-# idyllic
-final year project for university of london computer science degree
-=======
-<<<<<<< HEAD
+![image](https://github.com/user-attachments/assets/7770404b-1ff9-41b9-81f2-2731ecb14e96)
+
+# Idyllic - Balancing Mindfulness through Productivity
+Final Year Project for University of London BSc Computer Science   
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
@@ -86,9 +82,7 @@ To learn more about React Native, take a look at the following resources:
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
-=======
-# idyllic
-final year project for university of london computer science degree
+- 
 >>>>>>> 55d76e85ba0206fed9f060ba05734103e4fde871
 >>>>>>> cece498 (Initial commit)
 >>>>>>> 9d59b75 (Initial Commit)
