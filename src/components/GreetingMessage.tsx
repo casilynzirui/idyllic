@@ -27,7 +27,7 @@ const GreetingMessage: React.FC = () => {
         if (isFocused) {
             const fetchDisplayUsername = async () => {
                 try {
-                    const idyllicUsername = await getIdyllicUsername(); // Fetching idyllic username
+                    const idyllicUsername = await getIdyllicUsername(); // Fetch username
                     setDisplayUsername(idyllicUsername); // Set username and update state
                 } catch (error) {
                     console.error('Error fetching username:', error);
@@ -44,7 +44,7 @@ const GreetingMessage: React.FC = () => {
                 if (!initialLogin) {
                     // Initial login to app
                     setGreetingMessage(`Hello, ${displayUsername}!`);
-                    setInitialLogin(true); // Mark app as visited
+                    setInitialLogin(true); // To mark app as visited
                 } else {
                     // Subsequent visit to dashboard
                     setGreetingMessage(getRandomGreeting());

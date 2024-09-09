@@ -20,7 +20,6 @@ const OnboardingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
                 await AsyncStorage.setItem('IdyllicUsername', idyllicUsername);
                 onComplete();
             } catch (error) {
-                Alert.alert('Error', 'Something went wrong.');
                 console.error(error);
             }
         } else {

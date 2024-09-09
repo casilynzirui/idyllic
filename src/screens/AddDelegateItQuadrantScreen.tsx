@@ -18,7 +18,7 @@ const AddDelegateItQuadrant = ({ navigation }: any) => {
                 } catch (error) {
                     console.error('Error parsing existing notes:', error);
 
-                    await AsyncStorage.removeItem('delegateit'); // Remove if there's corrupted data
+                    await AsyncStorage.removeItem('delegateit'); // Remove if there's any corrupted data
                     noteEntriesArray = [];
                 }
             }

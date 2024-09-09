@@ -26,7 +26,7 @@ const TodoScreen = () => {
             }
 
         } catch (error) {
-            console.error('Failed,', error);
+            console.error('Failed to load todo items,', error);
         }
         };
 
@@ -40,7 +40,7 @@ const TodoScreen = () => {
             await AsyncStorage.setItem('todoItems', JSON.stringify(todoItems));
             await AsyncStorage.setItem('deletedItems', JSON.stringify(deletedItems));
         } catch (error) {
-            console.error('Failed to save todos:', error);
+            console.error('Failed to save todo items:', error);
         }
         };
 

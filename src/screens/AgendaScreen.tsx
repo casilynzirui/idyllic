@@ -50,7 +50,7 @@ const AgendaScreen = () => {
         }
     };
     
-    // Work in progress
+    // Edit agenda function work in progress
     const editAgendaItem = () => {
         if (selectedDate && newAgendaTitle.trim().length > 0 && newAgendaDescription.trim().length > 0) {
         const updatedAgendaItems = { ...agendaItems };
@@ -245,17 +245,17 @@ const AgendaScreen = () => {
                 <TextInput
                     style={styles.agendaInput}
                     placeholder="Enter agenda title"
-                    value={newAgendaTitle} // aa
-                    onChangeText={setNewAgendaTitle} // aa
+                    value={newAgendaTitle} 
+                    onChangeText={setNewAgendaTitle} 
                 />
                 </View>
                 <View style={styles.agendaInputContainer2}>
                 <TextInput
                     style={styles.agendaInput2}
                     placeholder="Enter agenda description"
-                    value={newAgendaDescription} // aa
+                    value={newAgendaDescription} 
                     multiline={true}
-                    onChangeText={setNewAgendaDescription} // aa
+                    onChangeText={setNewAgendaDescription} 
                 />
                 </View>
                 <TouchableOpacity style={styles.addAgendaButton} onPress={editAgendaItem}> 

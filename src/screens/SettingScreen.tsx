@@ -56,7 +56,7 @@ const SettingScreen = () => {
         const usernameKey = 'IdyllicUsername'; 
         const keysToClear = idyllicKeys.filter(idyllicKeys => idyllicKeys !== usernameKey);
     
-        // Remove all keys except username
+        // Remove all data keys except username
         await AsyncStorage.multiRemove(keysToClear);
         RNRestart.Restart();
     
